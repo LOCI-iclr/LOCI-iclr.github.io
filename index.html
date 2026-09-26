@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>LOCI: Spatial Linear Memory for Streaming World Models</title>
+<meta name="description" content="Supplementary videos for LOCI: Spatial Linear Memory for Streaming World Models (anonymous submission).">
+<style>
+/* Optima ships with macOS; elsewhere fall back to Arsenal (OFL), bundled locally so the page stays offline. */
+@font-face{font-family:'Arsenal';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/arsenal-400.woff2) format('woff2')}
+@font-face{font-family:'Arsenal';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/arsenal-400i.woff2) format('woff2')}
+@font-face{font-family:'Arsenal';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/arsenal-700.woff2) format('woff2')}
+@font-face{font-family:'Arsenal';font-style:italic;font-weight:700;font-display:swap;src:url(fonts/arsenal-700i.woff2) format('woff2')}
+
+:root{
+  --face:'Optima','Optima nova','URW Classico','Arsenal',Candara,'Gill Sans','Gill Sans MT',-apple-system,sans-serif;
+  --bg:#fbfaf7;--paper:#fff;--ink:#161512;--text:#34312b;--mut:#6b665d;--faint:#a8a296;--rule:#e4e0d6;--rule-strong:#161512;
+  --accent:#8c2b1e;--accent-soft:rgba(140,43,30,.06);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#111110;--paper:#fff;--ink:#eeeae1;--text:#d3cec3;--mut:#9e988c;--faint:#6b665d;--rule:#2b2925;--rule-strong:#eeeae1;
+  --accent:#e39a7f;--accent-soft:rgba(227,154,127,.10);
+}}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:40px}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.72 var(--face);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-kerning:normal}
+::selection{background:var(--accent);color:#fff}
+b{font-weight:600;color:var(--ink)}
+i{font-style:italic}
+
+/* Layout: contents rail + reading column */
+.layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:72px;max-width:1340px;margin:0 auto;padding:0 44px}
+main{min-width:0;padding-bottom:112px}
+
+/* Contents rail */
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;display:flex;flex-direction:column;padding:64px 0 36px}
+nav.toc .mark{font-size:21px;font-weight:600;letter-spacing:.16em;color:var(--ink);text-decoration:none}
+nav.toc .mark-sub{font-size:12.5px;font-style:italic;color:var(--mut);line-height:1.45;margin-top:6px;padding-bottom:26px;border-bottom:1px solid var(--rule)}
+nav.toc ol{list-style:none;margin:22px 0 0;padding:0}
+nav.toc li a{position:relative;display:grid;grid-template-columns:22px 1fr;align-items:baseline;padding:8px 0 8px 14px;color:var(--mut);text-decoration:none;transition:color .2s}
+nav.toc li a::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:2px;background:transparent;transition:background .2s}
+nav.toc li a .n{font-size:13px;color:var(--faint);font-variant-numeric:tabular-nums}
+nav.toc li a .t{font-size:15px;line-height:1.35}
+nav.toc li a:hover{color:var(--ink)}
+nav.toc li a.on{color:var(--ink)}
+nav.toc li a.on::before{background:var(--accent)}
+nav.toc li a.on .n{color:var(--ink)}
+nav.toc .progress{position:relative;height:1px;background:var(--rule);margin-top:22px}
+nav.toc .progress i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink)}
+nav.toc .foot{margin-top:auto;font-size:12px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase}
+nav.toc .foot a{color:inherit;text-decoration:none}
+nav.toc .foot a:hover{color:var(--ink)}
+
+/* Title block: centered, closed by a journal-style double rule */
+.hero{padding:96px 0 0;text-align:center}
+.hero h1{font-size:clamp(32px,4.6vw,56px);line-height:1.1;font-weight:560;letter-spacing:-.022em;color:var(--ink);margin:0 auto;max-width:16em}
+.hero .rule{margin:44px auto 0;max-width:760px;height:4px;border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);opacity:.85}
+
+/* Sections, LaTeX-like numbering */
+section{padding-top:84px}
+.sec-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;padding-bottom:12px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
+.sec-head .n{font-size:26px;font-weight:560;color:var(--ink);font-variant-numeric:lining-nums tabular-nums;min-width:.8em}
+.sec-head h2{font-size:26px;line-height:1.2;font-weight:560;letter-spacing:-.012em;color:var(--ink);margin:0;display:contents}
+.sec-head h2 small{margin-left:auto;font-size:14.5px;font-weight:400;font-style:italic;letter-spacing:0;color:var(--mut)}
+.lead{margin:0 0 34px;max-width:46em;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+
+/* Subsections */
+.subsec{padding-top:40px}
+#set-a{padding-top:8px}
+.sub-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin-bottom:14px}
+.sub-head .n{font-size:19px;font-weight:560;color:var(--ink);font-variant-numeric:lining-nums tabular-nums}
+.sub-head h3{font-size:19px;font-weight:560;color:var(--ink);margin:0}
+.sub-head small{margin-left:auto;font-size:14.5px;font-style:italic;color:var(--mut)}
+nav.toc ol.sub{margin:0 0 4px;padding:0}
+nav.toc ol.sub a{grid-template-columns:30px 1fr;padding:5px 0 5px 28px}
+nav.toc ol.sub a .t{font-size:14px}
+nav.toc ol.sub a .n{font-size:12px}
+nav.toc li a.parent-on{color:var(--ink)}
+
+/* Figures */
+figure{margin:0 0 60px}
+.fig-label{font-weight:600;color:var(--ink);margin-right:.35em}
+.stage{position:relative;width:100%;overflow:hidden;background:#000;border:1px solid var(--rule)}
+.stage video{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
+figcaption{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 28px;align-items:center;margin-top:14px;font-size:15px;line-height:1.55;color:var(--mut)}
+figcaption h3{display:inline;font-size:inherit;font-weight:600;font-style:italic;color:var(--ink);margin:0}
+figcaption .meta{color:var(--mut)}
+
+/* Figure 1 animation */
+figure.teaser{margin:0}
+.anim-stage{position:relative;background:var(--paper);border:1px solid var(--rule);padding:22px 24px;overflow:hidden}
+.anim-stage img{display:block;width:100%;height:auto}
+.anim-stage .ghost{opacity:.12;transition:opacity .8s}
+.anim-stage .layers{position:absolute;inset:22px 24px}
+.anim-stage .layer{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .9s ease,transform .9s ease;transform:translateY(4px)}
+.anim-stage .layer.on{opacity:1;transform:none}
+.teaser.done .ghost{opacity:1}
+.anim-bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;gap:6px 18px;padding:14px 0;border-bottom:1px solid var(--rule);min-height:56px}
+.anim-panel{font-size:15px;font-style:italic;color:var(--accent);white-space:nowrap}
+.anim-text{margin:0;font-size:16px;line-height:1.55;color:var(--ink);transition:opacity .35s}
+.anim-text.fade{opacity:0}
+.anim-ctl{display:flex;align-items:center;gap:12px;align-self:center}
+.anim-dots{display:flex;gap:2px}
+.anim-dots button{width:20px;height:20px;padding:0;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+.anim-dots button::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rule);transition:background .3s,transform .3s}
+.anim-dots button.seen::before{background:var(--faint)}
+.anim-dots button.cur::before{background:var(--accent);transform:scale(1.4)}
+.anim-toggle{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .2s,color .2s}
+.anim-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.anim-toggle svg{width:9px;height:9px;fill:currentColor}
+.diagram-cap{margin:14px 0 0;font-size:15px;line-height:1.6;color:var(--mut);max-width:52em}
+.anim-text sub{font-size:.72em;line-height:0}
+@media (prefers-reduced-motion:reduce){.anim-stage .ghost{opacity:1}.anim-stage .layers,.anim-bar{display:none}}
+
+/* Protocol: paper-style enumerate */
+.protocol ol{list-style:none;margin:0;padding:0;counter-reset:p;max-width:46em}
+.protocol li{counter-increment:p;display:grid;grid-template-columns:40px 1fr;padding:6px 0}
+.protocol li::before{content:"(" counter(p,lower-roman) ")";font-style:italic;color:var(--mut)}
+
+/* Figure controls */
+.playall{display:inline-flex;align-items:center;gap:9px;font:inherit;font-size:13px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;cursor:pointer;padding:7px 16px;border:1px solid var(--accent);border-radius:999px;background:transparent;color:var(--accent);transition:background .2s}
+.playall:hover{background:var(--accent-soft)}
+.playall svg{width:9px;height:9px;fill:currentColor}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+footer{max-width:1340px;margin:0 auto;padding:28px 44px 44px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;font-style:italic;color:var(--faint);border-top:1px solid var(--rule)}
+
+@media (max-width:1080px){
+  .layout{display:block;padding:0 28px}
+  nav.toc{display:none}
+  footer{padding:24px 28px}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .hero{padding-top:56px}
+  .hero .rule{margin-top:32px}
+  section{padding-top:60px}
+  .sec-head .n,.sec-head h2{font-size:22px}
+  .sec-head h2 small,.sub-head small{margin-left:0;flex-basis:100%;font-size:14px}
+  .lead{text-align:left}
+  .anim-stage{padding:8px}
+  .anim-stage .layers{inset:8px}
+  .anim-bar{grid-template-columns:1fr auto}
+  .anim-panel{grid-column:1/-1}
+  .anim-text{font-size:15px}
+  figcaption{grid-template-columns:1fr}
+  .playall{justify-self:start}
+}
+@media (max-width:480px){
+  .layout{padding:0 16px}
+  footer{padding:24px 16px}
+}
+.panes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pane .stage{aspect-ratio:864/480}
+.pane .tag{margin-top:6px;font-size:13.5px;font-style:italic;color:var(--mut);text-align:center}
+@media (max-width:760px){.panes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<nav class="toc" aria-label="Contents">
+  <a class="mark" href="#top">LOCI</a>
+  <div class="mark-sub">Spatial Linear Memory for Streaming World Models</div>
+  <ol>
+    <li><a href="#key-idea"><span class="n">1</span><span class="t">Key idea of LOCI</span></a></li>
+    <li><a href="#protocol"><span class="n">2</span><span class="t">Setup</span></a></li>
+    <li><a href="#results"><span class="n">3</span><span class="t">Results</span></a>
+      <ol class="sub">
+        <li><a href="#set-full" data-parent="results"><span class="n">3.1</span><span class="t">Full history</span></a></li>
+        <li><a href="#set-sparse" data-parent="results"><span class="n">3.2</span><span class="t">Sparse memory</span></a></li>
+      </ol>
+    </li>
+    <li><a href="#sources"><span class="n">4</span><span class="t">Clip sources</span></a></li>
+  </ol>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="foot"><a href="#top">Back to top &uarr;</a></div>
+</nav>
+
+<main>
+
+<header class="hero" id="top">
+  <h1>LOCI: Spatial Linear Memory for Streaming World Models</h1>
+  <div class="rule" aria-hidden="true"></div>
+</header>
+
+
+<section id="key-idea">
+  <div class="sec-head"><span class="n">1</span><h2>Key idea of LOCI</h2></div>
+  <figure class="teaser" id="teaser" data-w="2700" data-h="573">
+    <div class="anim-stage">
+      <img class="ghost" src="figures/teaser.png" alt="Figure 1: softmax-only memory versus LOCI's hybrid spatial memory at a camera revisit." width="2700" height="573">
+    </div>
+    <div class="anim-bar">
+      <span class="anim-panel"></span>
+      <p class="anim-text" aria-live="polite"></p>
+      <div class="anim-ctl">
+        <div class="anim-dots" role="group" aria-label="Animation steps"></div>
+        <button type="button" class="anim-toggle" aria-label="Pause animation">
+          <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0h3v10H1zM6 0h3v10H6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="diagram-cap"><span class="fig-label">Figure 1.</span>Projectively conditioned recurrent memory integrates historical context, while
+    retained KV preserves observation-level detail. Recurrent readouts update the features used by subsequent historical attention,
+    connecting the two representations through the feature stream.</p>
+  </figure>
+</section>
+
+
+<section id="protocol">
+  <div class="sec-head"><span class="n">2</span><h2>Setup</h2></div>
+  <div class="protocol">
+    <ol>
+      <li><div><b>GT history as memory.</b> The model is first given a recorded clip of the scene (the <i>GT history</i>) as its memory context,
+        then generates the continuation on its own along the recorded camera path.</div></li>
+      <li><div>Each figure shows three separate videos: the GT history the model received, LOCI's generated continuation, and the recorded
+        continuation for reference. Use <b>Play all</b> to start the three videos together.</div></li>
+      <li><div><b>Full history</b> keeps the entire past in memory. <b>Sparse memory</b> keeps a fixed budget of past context plus the most
+        recent frames, so memory cost stays bounded as the video grows.</div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="results">
+  <div class="sec-head"><span class="n">3</span><h2>Results</h2></div>
+
+<div class="subsec" id="set-full">
+  <div class="sub-head"><span class="n">3.1</span><h3>GT history as memory &middot; full history</h3><small>9 clips</small></div>
+  <p class="lead">LOCI conditioned on the complete GT history and everything it has generated so far.</p>
+
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage" style="aspect-ratio:768/512"><video controls preload="none" muted playsinline poster="posters/forest-history.jpg"><source src="videos/forest-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage" style="aspect-ratio:768/512"><video controls preload="none" muted playsinline poster="posters/forest-full.jpg"><source src="videos/forest-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage" style="aspect-ratio:768/512"><video controls preload="none" muted playsinline poster="posters/forest-gt.jpg"><source src="videos/forest-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 2.</span><h3>Forest.</h3> <span class="meta">13.8 s GT history as memory &rarr; 26.2 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage" style="aspect-ratio:768/512"><video controls preload="none" muted playsinline poster="posters/city-history.jpg"><source src="videos/city-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage" style="aspect-ratio:768/512"><video controls preload="none" muted playsinline poster="posters/city-full.jpg"><source src="videos/city-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage" style="aspect-ratio:768/512"><video controls preload="none" muted playsinline poster="posters/city-gt.jpg"><source src="videos/city-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 3.</span><h3>City.</h3> <span class="meta">18.8 s GT history as memory &rarr; 21.2 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/suburb-history.jpg"><source src="videos/suburb-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/suburb-full.jpg"><source src="videos/suburb-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/suburb-gt.jpg"><source src="videos/suburb-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 4.</span><h3>Suburb, daytime.</h3> <span class="meta">11.3 s GT history as memory &rarr; 28.6 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/street-history.jpg"><source src="videos/street-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/street-full.jpg"><source src="videos/street-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/street-gt.jpg"><source src="videos/street-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 5.</span><h3>Suburban street.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/plaza-history.jpg"><source src="videos/plaza-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/plaza-full.jpg"><source src="videos/plaza-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/plaza-gt.jpg"><source src="videos/plaza-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 6.</span><h3>Temple plaza.</h3> <span class="meta">18.8 s GT history as memory &rarr; 21.1 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/temple-history.jpg"><source src="videos/temple-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/temple-full.jpg"><source src="videos/temple-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/temple-gt.jpg"><source src="videos/temple-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 7.</span><h3>Temple courtyard.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/palace-history.jpg"><source src="videos/palace-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/palace-full.jpg"><source src="videos/palace-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/palace-gt.jpg"><source src="videos/palace-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 8.</span><h3>Palace courtyard.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/harbor-history.jpg"><source src="videos/harbor-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/harbor-full.jpg"><source src="videos/harbor-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/harbor-gt.jpg"><source src="videos/harbor-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 9.</span><h3>Container harbor at sunset.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/meadow-history.jpg"><source src="videos/meadow-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/meadow-full.jpg"><source src="videos/meadow-full.mp4" type="video/mp4"></video></div><div class="tag">LOCI, full history</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/meadow-gt.jpg"><source src="videos/meadow-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 10.</span><h3>Mountain meadow.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+</div>
+
+<div class="subsec" id="set-sparse">
+  <div class="sub-head"><span class="n">3.2</span><h3>GT history as memory &middot; sparse memory</h3><small>13 clips</small></div>
+  <p class="lead">The same setup with LOCI's bounded sparse memory: only a fixed budget of past context is retained, independent of video length.</p>
+
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/suburb-history.jpg"><source src="videos/suburb-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/suburb-sparse.jpg"><source src="videos/suburb-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/suburb-gt.jpg"><source src="videos/suburb-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 11.</span><h3>Suburb, daytime.</h3> <span class="meta">11.3 s GT history as memory &rarr; 28.6 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/street-history.jpg"><source src="videos/street-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/street-sparse.jpg"><source src="videos/street-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/street-gt.jpg"><source src="videos/street-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 12.</span><h3>Suburban street.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/plaza-history.jpg"><source src="videos/plaza-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/plaza-sparse.jpg"><source src="videos/plaza-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/plaza-gt.jpg"><source src="videos/plaza-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 13.</span><h3>Temple plaza.</h3> <span class="meta">18.8 s GT history as memory &rarr; 21.1 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/temple-history.jpg"><source src="videos/temple-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/temple-sparse.jpg"><source src="videos/temple-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/temple-gt.jpg"><source src="videos/temple-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 14.</span><h3>Temple courtyard.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/palace-history.jpg"><source src="videos/palace-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/palace-sparse.jpg"><source src="videos/palace-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/palace-gt.jpg"><source src="videos/palace-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 15.</span><h3>Palace courtyard.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/harbor-history.jpg"><source src="videos/harbor-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/harbor-sparse.jpg"><source src="videos/harbor-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/harbor-gt.jpg"><source src="videos/harbor-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 16.</span><h3>Container harbor at sunset.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/meadow-history.jpg"><source src="videos/meadow-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/meadow-sparse.jpg"><source src="videos/meadow-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/meadow-gt.jpg"><source src="videos/meadow-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 17.</span><h3>Mountain meadow.</h3> <span class="meta">5.1 s GT history as memory &rarr; 14.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/snow-history.jpg"><source src="videos/snow-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/snow-sparse.jpg"><source src="videos/snow-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/snow-gt.jpg"><source src="videos/snow-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 18.</span><h3>Snowy village.</h3> <span class="meta">11.3 s GT history as memory &rarr; 48.6 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/hills-history.jpg"><source src="videos/hills-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/hills-sparse.jpg"><source src="videos/hills-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/hills-gt.jpg"><source src="videos/hills-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 19.</span><h3>Grassy hills.</h3> <span class="meta">6.3 s GT history as memory &rarr; 53.6 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/desert-history.jpg"><source src="videos/desert-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/desert-sparse.jpg"><source src="videos/desert-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/desert-gt.jpg"><source src="videos/desert-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 20.</span><h3>Desert temple.</h3> <span class="meta">20.1 s GT history as memory &rarr; 39.8 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/campus-history.jpg"><source src="videos/campus-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/campus-sparse.jpg"><source src="videos/campus-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/campus-gt.jpg"><source src="videos/campus-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 21.</span><h3>College campus.</h3> <span class="meta">17.6 s GT history as memory &rarr; 42.3 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/tokyo-history.jpg"><source src="videos/tokyo-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/tokyo-sparse.jpg"><source src="videos/tokyo-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/tokyo-gt.jpg"><source src="videos/tokyo-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 22.</span><h3>Tokyo street.</h3> <span class="meta">11.3 s GT history as memory &rarr; 48.6 s generated.</span></div></figcaption>
+  </figure>
+  <figure class="reveal trio">
+    <div class="panes"><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/downtown-history.jpg"><source src="videos/downtown-history.mp4" type="video/mp4"></video></div><div class="tag">GT history (memory)</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/downtown-sparse.jpg"><source src="videos/downtown-sparse.mp4" type="video/mp4"></video></div><div class="tag">LOCI, sparse memory</div></div><div class="pane"><div class="stage"><video controls preload="none" muted playsinline poster="posters/downtown-gt.jpg"><source src="videos/downtown-gt.mp4" type="video/mp4"></video></div><div class="tag">GT continuation (reference)</div></div></div>
+    <figcaption><div><span class="fig-label">Figure 23.</span><h3>Downtown at dusk.</h3> <span class="meta">13.8 s GT history as memory &rarr; 46.1 s generated.</span></div></figcaption>
+  </figure>
+</div>
+</section>
+
+<section id="sources">
+  <div class="sec-head"><span class="n">4</span><h2>Clip sources</h2></div>
+  <p class="lead">All clips are rendered game-engine scenes. <b>Held-out clips</b> (not used for training): Forest, City and Temple plaza. <b>Clips from the training data</b>: all other scenes (Suburb, Suburban street, Temple courtyard, Palace courtyard, Container harbor, Mountain meadow, Snowy village, Grassy hills, Desert temple, College campus, Tokyo street, Downtown). Dark night-time clips are not shown.</p>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <span>LOCI &middot; Anonymous submission</span>
+  <span>No external scripts, fonts or trackers &middot; viewable offline</span>
+</footer>
+
+<script>
+(function(){
+  var PLAY='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>';
+  var PAUSE='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0h3v10H1zM6 0h3v10H6z"/></svg>';
+
+  document.querySelectorAll('figure[data-grid]').forEach(function(fig){
+    var g=fig.dataset.grid.split('x'),cols=+g[0],rows=+g[1];
+    var stage=fig.querySelector('.stage'),video=stage.querySelector('video');
+
+    // Size the stage from the video's real dimensions (fallback: 16:9 panels).
+    stage.style.aspectRatio=(cols*16)+' / '+(rows*9);
+    video.addEventListener('loadedmetadata',function(){stage.style.aspectRatio=video.videoWidth+' / '+video.videoHeight;});
+
+    var b=document.createElement('button');b.type='button';b.className='playall';
+    function sync(){b.innerHTML=video.paused?PLAY+'Play all':PAUSE+'Pause';}
+    b.addEventListener('click',function(){
+      if(video.paused){video.currentTime=0;video.play();}else{video.pause();}
+    });
+    video.addEventListener('play',sync);video.addEventListener('pause',sync);
+    sync();
+    fig.querySelector('figcaption').appendChild(b);
+  });
+
+  document.querySelectorAll('figure.trio').forEach(function(fig){
+    var vs=[].slice.call(fig.querySelectorAll('video'));
+    var b=document.createElement('button');b.type='button';b.className='playall';
+    function sync(){var p=vs.every(function(v){return v.paused;});b.innerHTML=p?PLAY+'Play all':PAUSE+'Pause';}
+    b.addEventListener('click',function(){
+      if(vs.every(function(v){return v.paused;})){vs.forEach(function(v){v.currentTime=0;v.dataset.group='1';v.play();});}
+      else{vs.forEach(function(v){v.pause();});}
+    });
+    vs.forEach(function(v){v.addEventListener('play',sync);v.addEventListener('pause',sync);});
+    sync();fig.querySelector('figcaption').appendChild(b);
+  });
+
+  // Figure 1: reveal the paper figure step by step with a synced narration.
+  (function(){
+    var fig=document.getElementById('teaser');
+    if(!fig||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var W=+fig.dataset.w,H=+fig.dataset.h;
+    var STEPS=[
+      {panel:'(a) Softmax-only',text:'Past frames <i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, <i>x</i><sub>3</sub> are stored without their viewpoints, and the revisit query carries none either.',
+       poly:[[0,0],[520,0],[520,60],[473,60],[473,216],[416,216],[416,300],[459,300],[459,493],[1203,493],[1203,573],[0,573]]},
+      {panel:'(a) Softmax-only',text:'Matched by appearance alone, the query is pulled toward the wrong observation, <i>x</i><sub>3</sub>, instead of <i>x</i><sub>2</sub>.',
+       poly:[[520,0],[945,0],[945,493],[459,493],[459,300],[416,300],[416,216],[473,216],[473,60],[520,60]]},
+      {panel:'(a) Softmax-only',text:'The generated revisit is inconsistent with what was seen before.',
+       poly:[[945,0],[1203,0],[1203,493],[945,493]]},
+      {panel:'(b) LOCI',text:'LOCI keeps every observation together with its camera viewpoint, and the revisit query is viewpoint-aware.',
+       poly:[[1203,0],[1674,0],[1674,250],[1630,250],[1630,338],[1674,338],[1674,493],[2700,493],[2700,573],[1203,573]]},
+      {panel:'(b) LOCI',text:'PRoPE embeds camera geometry into the recurrent memory\u2019s queries, keys and values.',
+       poly:[[1674,0],[2450,0],[2450,100],[2063,100],[2063,493],[1674,493],[1674,338],[1630,338],[1630,250],[1674,250]]},
+      {panel:'(b) LOCI',text:'KDA updates a fixed-size state, and the viewpoint-aware query aligns with the co-visible observation <i>x</i><sub>2</sub>.',
+       poly:[[2063,100],[2450,100],[2450,493],[2063,493]]},
+      {panel:'(b) LOCI',text:'The revisit reproduces the previously observed content: consistent.',
+       poly:[[2450,0],[2700,0],[2700,493],[2450,493]]}
+    ];
+    var STEP_MS=3200,HOLD_MS=4500;
+    var stage=fig.querySelector('.anim-stage'),ghost=stage.querySelector('.ghost');
+    var wrap=document.createElement('div');wrap.className='layers';stage.appendChild(wrap);
+    var panel=fig.querySelector('.anim-panel'),text=fig.querySelector('.anim-text');
+    var dotsBox=fig.querySelector('.anim-dots'),toggle=fig.querySelector('.anim-toggle');
+    var layers=[],dots=[];
+    STEPS.forEach(function(st,i){
+      var img=document.createElement('img');img.className='layer';img.src=ghost.getAttribute('src');img.alt='';
+      img.style.clipPath='polygon('+st.poly.map(function(p){return (p[0]/W*100).toFixed(2)+'% '+(p[1]/H*100).toFixed(2)+'%';}).join(',')+')';
+      wrap.appendChild(img);layers.push(img);
+      var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Step '+(i+1));
+      d.addEventListener('click',function(){show(i);if(playing)schedule();});
+      dotsBox.appendChild(d);dots.push(d);
+    });
+
+    var cur=-1,timer=null,playing=true,visible=false;
+    function show(i){
+      cur=i;
+      layers.forEach(function(l,j){l.classList.toggle('on',j<=i);});
+      dots.forEach(function(d,j){d.classList.toggle('cur',j===i);d.classList.toggle('seen',j<i);});
+      fig.classList.toggle('done',i===STEPS.length-1);
+      text.classList.add('fade');
+      setTimeout(function(){panel.textContent=STEPS[i].panel;text.innerHTML=STEPS[i].text;text.classList.remove('fade');},200);
+    }
+    function schedule(){
+      clearTimeout(timer);
+      if(!playing||!visible)return;
+      timer=setTimeout(function(){show(cur>=STEPS.length-1?0:cur+1);schedule();},cur===STEPS.length-1?HOLD_MS:STEP_MS);
+    }
+    var PAUSE=toggle.innerHTML,PLAY='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>';
+    toggle.addEventListener('click',function(){
+      playing=!playing;
+      toggle.innerHTML=playing?PAUSE:PLAY;
+      toggle.setAttribute('aria-label',playing?'Pause animation':'Play animation');
+      if(playing&&cur===STEPS.length-1)show(0);
+      schedule();
+    });
+    show(0);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){visible=es[0].isIntersecting;schedule();},{threshold:.35}).observe(fig);
+    }else{visible=true;schedule();}
+  })();
+
+  // Only one video plays at a time, which keeps weaker laptops smooth.
+  var videos=[].slice.call(document.querySelectorAll('video'));
+  videos.forEach(function(v){
+    v.addEventListener('play',function(){var f=v.closest('figure');videos.forEach(function(o){if(o!==v&&!o.paused&&o.closest('figure')!==f)o.pause();});});
+  });
+
+  // Fade figures in as they enter the viewport.
+  var reveals=[].slice.call(document.querySelectorAll('.reveal'));
+  if('IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ro.observe(el);});
+  }else{
+    reveals.forEach(function(el){el.classList.add('in');});
+  }
+
+  // Highlight the current section in the contents rail and track reading progress.
+  var links=[].slice.call(document.querySelectorAll('nav.toc li a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  var bar=document.querySelector('nav.toc .progress i');
+  function onScroll(){
+    var y=window.scrollY+window.innerHeight*0.35,cur=-1;
+    sections.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i;});
+    var parent=cur>=0?links[cur].dataset.parent:null;
+    links.forEach(function(a,i){
+      a.classList.toggle('on',i===cur);
+      a.classList.toggle('parent-on',!!parent&&a.getAttribute('href')==='#'+parent);
+    });
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar)bar.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+'%';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body>
+</html>
